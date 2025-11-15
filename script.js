@@ -31,3 +31,17 @@ const keyToLane = {
 
 const hitZone = 100;
 const speed = 3;
+const noteInterval = 800;
+
+function createNote() {
+    const lane = Math.floor(Math.random()*4);
+    const note = document.createElement('div');
+    note.className = 'note';
+    note.style.left = lane * 100 + 'px';
+    note.style.top = '0px';
+    note.innerText = lanes[lane];
+    note.dataset.lane = lane;
+    game.appendChild(note);
+    notes.push(note);
+    
+}
