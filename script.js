@@ -70,6 +70,15 @@ function startGame() {
     messageEl.innerText = '';
     music.currentTime = 0;
     music.play();
-    
 
+    let noteCount = 0;  
+    const interval = setInterval(() => {
+        if (noteCount < totalNotes) {
+            createNote();
+            noteCount++;
+
+        } else {
+            clearInterval(interbval);
+        }
+    }, noteInterval);
 }
