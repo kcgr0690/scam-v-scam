@@ -66,6 +66,7 @@ function startGame() {
         const ind = document.createElement('div');
         ind.className = 'lane-indicator';
         ind.style.left = i * 100 + 'px';
+        ind.style.bottom = "0px";
         ind.innerText = indicators[i];
         game.appendChild(ind);
     }
@@ -104,7 +105,7 @@ function checkEnd() {
             // Optionally: setTimeout(() => nextScreen('some-next-screen'), 2000); to advance
         } else {
             messageEl.innerText = 'Try Again... Restarting in 2 seconds';
-            setTimeout(startGame, 2000);l
+            setTimeout(startGame, 2000);
         }
     }
 }
