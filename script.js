@@ -1,6 +1,10 @@
 const screen1 = document.getElementById('screen1');
 const screen2 = document.getElementById('screen2');
 
+function updateScore() {
+    ScoreEl.innerText = `Hits: ${hits}, Misses: ${misses}`;
+}
+
 function nextScreen(nextId) {
     const screens = document.querySelectorAll('.screen');
     screens.forEach(screen => screen.style.display = 'none');
@@ -61,4 +65,11 @@ function startGame() {
         ind.innerText = indicators[i];
         game.appendChild(ind);
     }
+
+    updateScore();
+    messageEl.innerText = '';
+    music.currentTime = 0;
+    music.play();
+    
+
 }
