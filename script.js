@@ -43,5 +43,22 @@ function createNote() {
     note.dataset.lane = lane;
     game.appendChild(note);
     notes.push(note);
-    
+
+}
+
+function startGame() {
+    hits = 0;
+    misses = 0;
+    notes = [];
+    game.innerHTML = '';
+
+    const indicators = ['A/←', 'W/↑', 'S/↓', 'D/→'];
+
+    for (let i = 0; i < 4; i++) {
+        const ind = document.createElement('div')
+        ind.className = 'lane-indicator';
+        ind.style.left = i * 100 + 'px';
+        ind.innerText = indicators[i];
+        game.appendChild(ind);
+    }
 }
