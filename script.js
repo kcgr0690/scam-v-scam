@@ -448,4 +448,19 @@ function initPasswordGame() {
 
     moveBowPassword();
 
+function moveBowPassword() {
+    if (!passwordGameActive) return;
+    
+    const bow = document.getElementById('bow');
+    const gameArea = document.getElementById('game-area');
+    if (!bow || !gameArea) return;
+
+    bowPosition += bowDirection * 0.5;
+    
+    if (bowPosition >= 95 || bowPosition <= 5) {
+        bowDirection *= -1;
+    }
+
+    bow.style.left = bowPosition + '%';
+    requestAnimationFrame(moveBowPassword);
 }
