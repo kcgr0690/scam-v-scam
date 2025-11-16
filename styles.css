@@ -62,12 +62,13 @@
     background-position: center;
 }
 
-#container1, #container2 {
+.container1, .container2, .container3, .container3, .container4, .container5, .container6, .container7 {
     width: 100%;
     height: 100vh;
 }
 
-#popUp1, #popUp2 {
+#popUp1, #popUp2, #popUp3, #popUp4, #popUp5, #popUp6, #popUp7 {
+    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
@@ -84,6 +85,35 @@
     top: 25%;
     left: 75%;
 }
+
+#popUp3 {
+    top: 57%;
+    left: 15%;
+}
+
+#popUp4 {
+    top: 67%;
+    left: 76%;
+}
+
+#popUp5 {
+    top: 17%;
+    left: 97%;
+
+}
+
+#popUp6 {
+    top: 47%;
+    left: 56%;
+
+}
+
+#popUp7 {
+    top: 12%;
+    left: 87%;
+
+}
+
 
 .offer-text{
     padding: 20px 40px 40px 40px;
@@ -104,7 +134,7 @@
     margin-bottom: 20px;
 }
 
-#close1, #close2 {
+#close1, #close2, #close3, #close4, #close5, #close6, #close7 {
     border: 0;
     outline: 0;
     cursor: pointer;
@@ -140,7 +170,6 @@
 }
 
 .lane-indicator {
-
     position: absolute;
     bottom: 0;
     width: 100px;
