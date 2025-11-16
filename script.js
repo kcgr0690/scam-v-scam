@@ -10,8 +10,8 @@ const game = document.getElementById('game');
 const scoreEl = document.getElementById('score');
 const messageEl = document.getElementById('message');
 
-const popUp1 = document.getElementById("container1");
-const popUp2 = document.getElementById("container2");
+const popUp1 = document.getElementById("popUp1");
+const popUp2 = document.getElementById("popUp2");
 const popUp3 = document.getElementById("popUp3");
 const popUp4 = document.getElementById("popUp4");
 const popUp5 = document.getElementById("popUp5");
@@ -57,12 +57,39 @@ function nextScreen(nextId) {
 setTimeout(() => {
     popUp1.style.display = "flex";
 
-}, 3000);
+}, 6000);
 
 setTimeout(() => {
     popUp2.style.display = "flex";
 
-}, 6000);
+}, 6500);
+
+setTimeout(() => {
+    popUp3.style.display = "flex";
+
+}, 7000);
+
+setTimeout(() => {
+    popUp4.style.display = "flex";
+
+}, 7500);
+
+setTimeout(() => {
+    popUp5.style.display = "flex";
+
+}, 8000);
+
+setTimeout(() => {
+    popUp6.style.display = "flex";
+
+}, 8500);
+
+setTimeout(() => {
+    popUp7.style.display = "flex";
+
+}, 9000);
+
+
 
 function closePopUp(popUpElement) {
     popUpElement.style.display = 'none';
@@ -74,6 +101,26 @@ close1.addEventListener('click', () => {
 
 close2.addEventListener('click', () => {
     closePopUp(popUp2);
+});
+
+close3.addEventListener('click', () => {
+    closePopUp(popUp3);
+});
+
+close4.addEventListener('click', () => {
+    closePopUp(popUp4);
+});
+
+close5.addEventListener('click', () => {
+    closePopUp(popUp5);
+});
+
+close6.addEventListener('click', () => {
+    closePopUp(popUp6);
+});
+
+close7.addEventListener('click', () => {
+    closePopUp(popUp7);
 });
 
 
