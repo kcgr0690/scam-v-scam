@@ -264,3 +264,52 @@ margin: 0;
     color: transparent; /* hidden at first */
     border: 3px solid white;
 }
+
+.target {
+position: absolute;
+width: 60px;
+height: 60px;
+background: red;
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+font-size: 30px;
+font-weight: bold;
+color: transparent; /* hidden at first */
+border: 3px solid white;
+}
+
+
+#bow {
+position: absolute;
+bottom: 10px;
+left: 370px;
+width: 60px;
+height: 60px;
+background: url(); /* ADD BOW IMAGE!!*/
+background-size: contain;
+background-repeat: no-repeat;
+}
+
+
+.arrow {
+position: absolute;
+width: 5px;
+height: 20px;
+background:yellow;
+}
+
+
+#inputs {
+margin-top: 20px;
+}
+
+
+.letter-box {
+width: 40px;
+height:40px;
+font-size: 22px;
+text-align: center;
+margin: 5px;
+}

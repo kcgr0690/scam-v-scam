@@ -22,103 +22,6 @@ const close3 = document.getElementById("close3");
 const close4 = document.getElementById("close4");
 const close5 = document.getElementById("close5");
 
-let closedCount = 0;
-const totalPopups = 8;
-const hide = document.getElementById('hide');
-
-let secretNumber = Math.trunc(Math.random() * 9) + 1;
-const displayMessage = function(message){
-    document.querySelector(".message").textContent = message;
-}
-
-document.querySelector('.check').addEventListener('click'),
-    function () {
-        const guess = Number(document.querySelector('.guess').value);
-        console.log(guess, typeof guess);
-        if(!guess){
-            displayMessage("No Number")
-        } else if (guess === secretNumber){
-            displayMessage('Correct Number!');
-            document.querySelector('.num').textContent = 
-            secretNumber;
-            document.querySelector('body').style.backgroundColor = "#64b347"
-            document.querySelector('number').style.width = "30rem";
-
-            if(score > highScore){
-                highScore = score;
-                document.querySelector('.highscore'.textContent = highScore);
-                highScore;
-            }
-            
-            else if(guess ==! secretNumber){
-                if (score > 1){
-                    displayMessage(guess > secretNumber > "Too High!" >
-                        "Too Low!");
-                        score--;
-                        document.querySelector('.score'.textContent = score)
-                    } else {
-                        displayMessage('You Lost the Game!');
-                        document.querySelector('.score').textContent = 0;
-                    }
-                 }
-           }
-        });
-
-        document.querySelector('.again').addEventListener('click',
-        function(){
-            score = 10;
-            secretNumber = Math.trunc(Math.random() + 9) + 1
-            displayMessage('Start Guessing...')
-            document.querySelector('score').textContent = score;
-            document.quertSelector('.number'.textContent = '?');
-                document.querySelector('.guess').value = '';
-        }
-         )
-
-for (let i = 1; i <= totalPopups; i++) {
-    const btn = document.getElementById(`close${i}`);
-    const popup = document.getElementById(`popUp${i}`);
-
-    btn.addEventListener("click", () => {
-        popup.style.display = "none"; 
-        closedCount++;
-
-        if (closedCount === totalPopups) {
-            hide.style.display = "block";    
-        }
-    });
-}
-let notes = [];
-let hits = 0;
-let misses = 0;
-const totalNotes = 12;
-const lanes = ['←', '↑', '↓', '→'];
-
-const keyToLane = {
-    'ArrowLeft': 0, 'a': 0,
-    'ArrowUp': 1, 'w': 1,
-    'ArrowDown': 2, 's': 2,
-    'ArrowRight': 3, 'd': 3,
-};
-
-const hitZone = 100;
-const speed = 3;
-const noteInterval = 800;
-
-function nextScreen(nextId) {
-    const screens = document.querySelectorAll('.screen');
-    screens.forEach(screen => screen.style.display = 'none');
-
-    const nextScreenEl = document.getElementById(nextId);
-    if (nextScreenEl) {
-        nextScreenEl.style.display = 'block';
-    }
-
-    
-    if (nextId === 'rhythm-game') {
-        startGame();
-    }
-}
 
 setTimeout(() => {
     popUp1.style.display = "flex";
@@ -158,6 +61,92 @@ setTimeout(() => {
 setTimeout(() => {
     hide.style.display = "flex";
 }, 14000);
+
+let closedCount = 0;
+let score = 10;
+let highScore = 0;
+const totalPopups = 8;
+const hide = document.getElementById('hide');
+
+let secretNumber = Math.trunc(Math.random() * 9) + 1;
+const displayMessage = function(message){
+    document.querySelector(".message").textContent = message;
+}
+
+document.querySelector('.check').addEventListener('click'), function () {
+        const guess = Number(document.querySelector('.guess').value);
+        console.log(guess, typeof guess);
+        if(!guess){
+            displayMessage("No Number")
+        } else if (guess === secretNumber){
+            displayMessage('Correct Number!');
+            document.querySelector('.num').textContent = 
+            secretNumber;
+            document.querySelector('body').style.backgroundColor = "#64b347"
+            document.querySelector('.number').style.width = "30rem";
+
+            if(score > highScore){
+                highScore = score;
+                document.querySelector('.highscore'.textContent = highScore);
+                highScore;
+            }
+            
+            else {
+                if (score > 1){
+                    displayMessage(guess > secretNumber ? "Too High!" : "Too Low!");
+                        score--;
+                        document.querySelector('.score'.textContent = score);
+                    } else {
+                        displayMessage('You Lost the Game!');
+                        document.querySelector('.score').textContent = 0;
+                    }
+                 }
+           }
+        };
+
+        document.querySelector('.again').addEventListener('click',
+        function(){
+            score = 10;
+            secretNumber = Math.trunc(Math.random() * 9) + 1
+            displayMessage('Start Guessing...')
+            document.querySelector('.score').textContent = score;
+            document.querySelector('.number'.textContent = '?');
+                document.querySelector('.guess').value = '';
+        }
+         )
+         
+
+let notes = [];
+let hits = 0;
+let misses = 0;
+const totalNotes = 12;
+const lanes = ['←', '↑', '↓', '→'];
+
+const keyToLane = {
+    'ArrowLeft': 0, 'a': 0,
+    'ArrowUp': 1, 'w': 1,
+    'ArrowDown': 2, 's': 2,
+    'ArrowRight': 3, 'd': 3,
+};
+
+const hitZone = 100;
+const speed = 3;
+const noteInterval = 800;
+
+function nextScreen(nextId) {
+    const screens = document.querySelectorAll('.screen');
+    screens.forEach(screen => screen.style.display = 'none');
+
+    const nextScreenEl = document.getElementById(nextId);
+    if (nextScreenEl) {
+        nextScreenEl.style.display = 'block';
+    }
+
+    
+    if (nextId === 'rhythm-game') {
+        startGame();
+    }
+}
 
 function createNote() {
     const lane = Math.floor(Math.random() * 4);
