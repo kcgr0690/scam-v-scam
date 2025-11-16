@@ -9,10 +9,19 @@
 </head>
 <body>
     <div id="start-screen" class="screen">
-        <h1 id = "title">Scam VS. Scam</h1>
-        <button onclick="nextScreen('screen1')">Play</button>
+        <div class = "title-text">
+            <h1 id = "title">Scam VS. Scam</h1>
+            <button id = "play" onclick="nextScreen('screen1')">Play</button>
+        </div>
     </div>
     <div id="screen1" class="screen" style="display: none;">
+        <div class = "main">
+            <p id = "name">Hawkto A. Skibede</p>
+            <p id = "email-text">Hey gng,</p>
+            <p id = "email-text">I heard that AP Physics is really hard... but I heard from someone online that this website helps a lot of people in that subject.</p>>
+            <p id = "link">here is the link!</p>
+             <p id = "email-text2">Hawkto</p>
+        </div>
         <div id="dialogue-box">
             <p id="dialogue-text">Your friend sent you an email!</p>
             <button onclick="nextScreen('screen2')">Open link!</button>

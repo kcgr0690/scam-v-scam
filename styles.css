@@ -6,12 +6,52 @@
     background-position: center;
 }
 
+.title-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    font-size: 50px;
+    transform: translate(235px, 200px);
+}
+
+#play {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background-color: grey;
+    color: white;
+    max-width: 100px;
+    transform: translate(650px);
+}
+
 #screen1 {
     background-color: transparent;
     background-image: url("images/email.png");
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+#name {
+    font-size: 50px;
+    color: blue;
+    transform: translate(560px, 120px);
+}
+
+#link {
+    color: rgb(126, 187, 207);
+    transform: translate(560px, 300px);
+    text-decoration: underline;
+
+}
+
+#email-text {
+    transform: translate(560px, 220px);
+}
+
+#email-text2 {
+    transform: translate(560px, 300px);
 }
 
 #screen2 {
@@ -34,9 +74,6 @@
     border-top: 2px solid #fff;
 }
 
-#title {
-    
-}
 #game {
     position: relative;
     width: 400px;
