@@ -10,7 +10,7 @@
 <body>
     <div id="start-screen" class="screen">
         <div class = "title-text">
-            <h1 id = "title">Scam vs. Scam</h1>
+            <h1 id = "title">Scam VS. Scam</h1>
             <button id = "play" onclick="nextScreen('screen1')">Play</button>
         </div>
     </div>
@@ -24,7 +24,7 @@
         </div>
         <div id="dialogue-box">
             <p id="dialogue-text">Your friend sent you an email!</p>
-            <button class="button" onclick="nextScreen('screen2')">Open link!</button>
+            <button onclick="nextScreen('screen2')">Open link!</button>
 
         </div>
     </div>
@@ -85,7 +85,7 @@
             </div>
         </div>
 
-        <button id="nextAfterPopups" class="button" onclick="nextScreen('rhythm-game')" style="display:none;">Next</button> 
+        <button onclick="nextScreen('rhythm-game')">Next</button> 
         <!--
         DO WE ADD THIS^^^ OR SHOULD WE DO ONCE THEY DISMISS THE LAST POPUP?-->
         </div>
@@ -97,17 +97,38 @@
         <div id="score">Hits: 0, Misses: 0</div>
         <div id="message"></div>
         <!--<audio id="music"></audio> SHOULD WE DO THIS?!??!--> 
-        <button class="button" onclick="nextScreen('choice')">Next</button> 
+        <button onclick="nextScreen('choice')">Next</button> 
     </div>
     
     <div id="choice" class="screen" style="display:none;">
-        <h1>Rhythm Game</h1>
-        <p>Use WASD or arrow keys to hit the falling OBJECTS?!?!??!?! when they hit the line at the bottom.</p>
-        <div id="game"></div>
-        <div id="score">Hits: 0, Misses: 0</div>
-        <div id="message"></div>
-        <!--<audio id="music"></audio> SHOULD WE DO THIS?!??!--> 
-        <button class="button" onclick="nextScreen('choice')">Next</button> 
+        <div class = "container8">
+            <div id = "popUp8">
+                <img src = "images/steal.png" width="100%">
+            </div>
+        </div>
+        <button onclick="nextScreen('number')">Next</button> 
+    </div>
+
+    <div id="number" class="screen" style="display:none;">
+        <h1 id = "num-title">Guess My Number !</h1>
+        <p class ="between">(Between 0-9)</p>
+        <button class="again btn">Again!!!</button>
+        <div class="num">
+            ?
+        </div>
+        <main>
+        <section class="left">
+            <input type="number" class="guess">
+            <button class="ntm check">Check!</button>
+                </section>
+                <section class="right"></section>
+                <p class="message">Start Guessing.</p>
+            </main>
+
+                    <div id = "popUp8">
+                        <img src = "images/steal.png" width="100%">
+                    </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
