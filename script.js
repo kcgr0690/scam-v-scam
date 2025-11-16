@@ -10,10 +10,41 @@ const game = document.getElementById('game');
 const scoreEl = document.getElementById('score');
 const messageEl = document.getElementById('message');
 
+const popUp1 = document.getElementById("popUp1");
+const popUp2 = document.getElementById("popUp2");
+const popUp3 = document.getElementById("popUp3");
+const popUp4 = document.getElementById("popUp4");
+const popUp5 = document.getElementById("popUp5");
 
+const close1 = document.getElementById("close1");
+const close2 = document.getElementById("close2");
+const close3 = document.getElementById("close3");
+const close4 = document.getElementById("close4");
+const close5 = document.getElementById("close5");
 
 let closedCount = 0;
-const totalPopups = 7;
+const totalPopups = 8;
+const hide = document.getElementById('hide');
+
+const secretNumber = Math.trunc(Math.random * 9) + 1
+const displayMessage = function(message){
+    document.querySelector(".message").textContent = message;
+}
+
+document.querySelector('.check'.addEventListener('click',
+    function () {
+        const guess = Number(document.querySelector('guess'.value);
+        console.log(guess, typeof guess);
+        if(!guess){
+            displayMessage("No Number")
+        } else if (guess === secretNumber){
+            displayMessage('Correct Number!');
+            document.querySelector('.number').textContent = 
+            secretNumber;
+            document.querySelector('body').style.backgroundColor = "#64b347"
+            document.querySelector('number').style.width = "30rem";
+    }
+)
 
 for (let i = 1; i <= totalPopups; i++) {
     const btn = document.getElementById(`close${i}`);
@@ -24,7 +55,7 @@ for (let i = 1; i <= totalPopups; i++) {
         closedCount++;
 
         if (closedCount === totalPopups) {
-            document.getElementById("nextAfterPopups").style.display = "block";
+            hide.style.display = "block";    
         }
     });
 }
@@ -100,9 +131,9 @@ setTimeout(() => {
 
 }, 10000);
 
-displayNext(() => {
+setTimeout(() => {
     hide.style.display = "flex";
-}, )
+}, 14000);
 
 function createNote() {
     const lane = Math.floor(Math.random() * 4);

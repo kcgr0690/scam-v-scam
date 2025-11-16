@@ -64,8 +64,13 @@
 
 #hide {
     display: none;
+    background-color: #1b466f;
+    color: rgb(231, 234, 243);
+    padding: 8px;
+    border-radius: 4px;
+
 }
-.container1, .container2, .container3, .container3, .container4, .container5, .container6, .container7 {
+.container1, .container2, .container3, .container3, .container4, .container5, .container6, .container7, .container8 {
     width: 100%;
     height: 100vh;
 }
@@ -142,7 +147,7 @@
     margin-bottom: 20px;
 }
 
-#close1, #close2, #close3, #close4, #close5, #close6, #close7 {
+#close1, #close2, #close3, #close4, #close5, #close6, #close7, #close8 {
     position: absolute;
     top: 8px;
     right: 8px;
