@@ -222,75 +222,71 @@ document.addEventListener('keydown', e => {
     }
 });
 
-let closedCount = 0;
-let secretDigits = [];
+let phoneLength = 10;
+let secretNumber = '';
 
-function generateSecretDigits() {
-  let secretDigits = [];  
-  for (let i = 0; i < phoneLength; i++){
-    let digit = Math.floor(Math.random() * 10);
-    phoneDigits.push(digit);
+function generateSecretNumber() {
+    secretNumber = '';
+    for (let i = 0; i < phoneLength; i++) {
+        secretNumber += Math.floor(Math.random() * 10); // add random digit 0-9
     }
-let currentIndex = 0;
+    console.log("Generated phone number:", secretNumber);
 }
-generateSecretDigits();
 
-let secretNumber = Math.trunc(Math.random() * 9) + 1;
+// generate a new number when the page loads
+generateSecretNumber();
 
-let phoneNumber = phoneDigits.join('');
-console.log("Generated phone:", phoneNumber);
+let score = 10;
 
-const displayMessage = function(message) {
+const displayMessage = message => {
     document.querySelector(".message").textContent = message;
-}
+};
 
 const checkBtn = document.querySelector('.check');
-if (checkBtn) {
-    checkBtn.addEventListener('click', function() {
-        const guess = Number(document.querySelector('.guess').value);
-        console.log(guess, typeof guess);
-        
-        if (guess < 0 || guess > 9 || isNaN(guess)) {
-            displayMessage("Enter 0-9!");
-            return;
-        } 
-        
-        const CorrectDigit = secretDigits[currentIndex];
+checkBtn.addEventListener('click', function() {
+    const guess = document.querySelector('.guess').value;
 
-        
-        if (guess === correctDigit) {
-            displayMessage('Correct Number!');
-            currentIndex++;
-            
-            document.querySelector('.num').textContent = secretDigits.slice(0, currentIndex).join('');
-            
-            if (currentIndex >= phoneLength){
-               displayMessage("You completed the whole number!");
-               document.querySelector('body').style.backgroundColor = "#64b347"; 
-            }
+    if (guess.length !== phoneLength || isNaN(guess)) {
+        displayMessage(`Enter a ${phoneLength}-digit number!`);
+        return;
+    }
+
+    if (guess === secretNumber) {
+        displayMessage("Correct! You guessed the number!");
+        document.querySelector('body').style.backgroundColor = "#64b347";
+    } else {
+        if (score > 1) {
+            score--;
+            displayMessage(`Wrong! Try again. Score: ${score}`);
         } else {
-            if (score > 1) {
-                displayMessage(`Digit ${currentIndex + 1}: Wrong!`);
-                score--;
-                document.querySelector('.score').textContent = score;
-            } else {
-                displayMessage("You lost :(");
-                document.querySelector('.score').textContent = 0;
-            }
+            displayMessage(`You lost! The number was ${secretNumber}`);
+            score = 0;
         }
-    });
-}
+    }
+    document.querySelector('.score').textContent = score;
+});
+
+// reset button
 const againBtn = document.querySelector('.again');
+againBtn.addEventListener('click', function() {
+    score = 10;
+    generateSecretNumber();
+    document.querySelector('.score').textContent = score;
+    document.querySelector('.guess').value = '';
+    displayMessage("Start guessing...");
+    document.querySelector('body').style.backgroundColor = "#111";
+});
+
+/*const againBtn = document.querySelector('.again');
 if (againBtn) {
-    againBtn.addEventListener('click', function() {
+    againBtn.addEventListener('click', function () {
         score = 10;
-        secretNumber = Math.trunc(Math.random() * 9) + 1;
-        displayMessage('Start Guessing...');
+        generateSecretDigits();
         document.querySelector('.score').textContent = score;
         document.querySelector('.num').textContent = '?';
         document.querySelector('.guess').value = '';
+        displayMessage("Start guessing digit 1...");
         document.querySelector('body').style.backgroundColor = '#111';
-        document.querySelector('.num').style.width = "15rem";
     });
 }
 
@@ -405,11 +401,53 @@ function initPasswordGame() {
     const bow = document.getElementById('bow');
     
     if (!gameArea || !bow) return;
+    
+    // Clear old targets and arrows
     const oldTargets = gameArea.querySelectorAll('.target');
     oldTargets.forEach(t => t.remove());
+    const oldArrows = gameArea.querySelectorAll('.arrow');
+    oldArrows.forEach(a => a.remove());
+    
     const arrowsDisplay = document.getElementById('arrows-left');
     if (arrowsDisplay) arrowsDisplay.textContent = arrowsLeft;
     
+    // Create input boxes container
+    let inputsContainer = document.getElementById('inputs');
+    if (inputsContainer) {
+        inputsContainer.innerHTML = ''; // Clear previous content
+        
+        // Create input boxes
+        for (let i = 0; i < PASSWORD_LENGTH; i++) {
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.id = 'box-' + i;
+            input.maxLength = 1;
+            input.style.width = '40px';
+            input.style.textAlign = 'center';
+            input.style.margin = '5px';
+            input.style.fontSize = '20px';
+            inputsContainer.appendChild(input);
+        }
+        
+        inputsContainer.appendChild(document.createElement('br'));
+        
+        // Create submit button
+        const submitBtn = document.createElement('button');
+        submitBtn.textContent = 'Submit Password';
+        submitBtn.onclick = checkPasswordSubmit;
+        submitsContainer.appendChild(submitBtn);
+        
+        // Create restart button
+        const restartBtn = document.createElement('button');
+        restartBtn.textContent = 'Restart';
+        restartBtn.style.marginLeft = '10px';
+        restartBtn.onclick = () => {
+            initPasswordGame();
+        };
+        inputsContainer.appendChild(restartBtn);
+    }
+    
+    // Position targets
     const positions = [
         { top: 50, left: 10 },
         { top: 50, left: 28 },
@@ -432,21 +470,8 @@ function initPasswordGame() {
         targets.push(target);
     });
 
-    const submitBtn = document.createElement('button');
-        submitBtn.textContent = 'Submit Password';
-        submitBtn.onclick = checkPasswordSubmit;
-        inputsContainer.appendChild(submitBtn);
-        
-        const restartBtn = document.createElement('button');
-        restartBtn.textContent = 'Restart';
-        restartBtn.onclick = () => {
-            nextScreen('password');
-            setTimeout(initPasswordGame, 100);
-        };
-        inputsContainer.appendChild(restartBtn);
-    }
-
     moveBowPassword();
+}
 
 function moveBowPassword() {
     if (!passwordGameActive) return;
@@ -464,3 +489,129 @@ function moveBowPassword() {
     bow.style.left = bowPosition + '%';
     requestAnimationFrame(moveBowPassword);
 }
+
+function shootArrow() {
+    const gameArea = document.getElementById('game-area');
+    const bow = document.getElementById('bow');
+    
+    if (!gameArea || !bow || arrowsLeft <= 0 || !passwordGameActive) return;
+
+    arrowsLeft--;
+    const arrowsDisplay = document.getElementById('arrows-left');
+    if (arrowsDisplay) arrowsDisplay.textContent = arrowsLeft;
+    
+    const arrow = document.createElement('div');
+    arrow.className = 'arrow';
+    arrow.style.left = bowPosition + '%';
+    arrow.style.bottom = '60px';
+    arrow.style.transform = 'translateX(-50%)';
+    gameArea.appendChild(arrow);
+
+    let arrowY = 60;
+    let hit = false;
+    
+    const arrowInterval = setInterval(() => {
+        arrowY += 5;
+        arrow.style.bottom = arrowY + 'px';
+
+        // Check collision with targets
+        targets.forEach(target => {
+            if (target.classList.contains('hit')) return;
+            
+            const targetRect = target.getBoundingClientRect();
+            const arrowRect = arrow.getBoundingClientRect();
+            
+            const overlap = !(
+                arrowRect.right < targetRect.left ||
+                arrowRect.left > targetRect.right ||
+                arrowRect.bottom < targetRect.top ||
+                arrowRect.top > targetRect.bottom
+            );
+
+            if (overlap && !hit) {
+                hit = true;
+                clearInterval(arrowInterval);
+                arrow.remove();
+                
+                target.classList.add('hit');
+                target.style.background = 'radial-gradient(circle, #44ff44 0%, #00cc00 50%, #009900 100%)';
+                target.textContent = password[target.dataset.index];
+                target.style.color = 'white';
+                
+                const inputBox = document.getElementById('box-' + target.dataset.index);
+                if (inputBox) {
+                    inputBox.value = password[target.dataset.index];
+                }
+                
+                targetsHit++;
+                
+                if (targetsHit === PASSWORD_LENGTH) {
+                    setTimeout(() => {
+                        alert('All targets hit! Now enter the password!');
+                    }, 500);
+                }
+            }
+        });
+
+        if (arrowY > 400 || hit) {
+            clearInterval(arrowInterval);
+            arrow.remove();
+            
+            if (!hit && arrowsLeft === 0 && targetsHit < PASSWORD_LENGTH) {
+                passwordGameActive = false;
+                setTimeout(() => {
+                    alert('Out of arrows! Click Restart to try again.');
+                }, 500);
+            }
+        }
+    }, 16);
+}
+
+function checkPasswordSubmit() {
+    let enteredPassword = '';
+    
+    for (let i = 0; i < PASSWORD_LENGTH; i++) {
+        const input = document.getElementById('box-' + i);
+        if (input) {
+            enteredPassword += input.value;
+        }
+    }
+
+    if (enteredPassword.length !== PASSWORD_LENGTH) {
+        alert('Please fill in all boxes!');
+        return;
+    }
+
+    if (enteredPassword === password) {
+        alert('🎉 SUCCESS! Password unlocked! You win!');
+        passwordGameActive = false;
+    } else {
+        alert('❌ Wrong password! Try again.');
+    }
+}
+
+// Event listener for shooting arrows
+document.addEventListener('click', (e) => {
+    const passwordScreen = document.getElementById('password');
+    if (!passwordScreen || passwordScreen.style.display === 'none') return;
+    
+    const gameArea = document.getElementById('game-area');
+    if (!gameArea) return;
+    
+    const rect = gameArea.getBoundingClientRect();
+    if (e.clientX >= rect.left && e.clientX <= rect.right &&
+        e.clientY >= rect.top && e.clientY <= rect.bottom) {
+        shootArrow();
+    }
+});
+
+// Modify nextScreen to initialize password game
+const originalNextScreen = nextScreen;
+nextScreen = function(nextId) {
+    originalNextScreen(nextId);
+    
+    if (nextId === 'password') {
+        setTimeout(initPasswordGame, 100);
+    }
+};
+*/
