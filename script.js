@@ -55,23 +55,14 @@ function nextScreen(nextId) {
 }
 
 setTimeout(() => {
-    popUp1.style.display = "none";
+    popUp1.style.display = "flex";
 
 }, 3000);
 
 setTimeout(() => {
-    popUp2.style.display = "none";
+    popUp2.style.display = "flex";
 
 }, 6000);
-
-
-
-function showPopUp2(popUpElement) {
-    const popUp2 = document.getElementById('popUp1');
-    popUp1Element.style.display = 'flex';
-}
-
-setTimeout(showPopUp2, 3000);
 
 function closePopUp(popUpElement) {
     popUpElement.style.display = 'none';
