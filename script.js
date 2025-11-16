@@ -263,6 +263,20 @@ if (checkBtn) {
             currentIndex++;
             
             document.querySelector('.num').textContent = secretDigits.slice(0, currentIndex).join('');
+            
+            if (currentIndex >= phoneLength){
+               displayMessage("You completed the whole number!");
+               document.querySelector('body').style.backgroundColor = "#64b347"; 
+            }
+        } else {
+            if (score > 1) {
+                displayMessage(`Digit ${currentIndex + 1}: Wrong!`);
+                score--;
+                document.querySelector('.score').textContent = score;
+            } else {
+                displayMessage("You lost :(");
+                document.querySelector('.score').textContent = 0;
+            }
         }
     });
 }
@@ -371,4 +385,67 @@ function generatePassword() {
         pwd += CHARS[Math.floor(Math.random() * CHARS.length)];
     }
     return pwd;
+}
+
+function initPasswordGame() {
+    const passwordScreen = document.getElementById('password');
+    if (!passwordScreen || passwordScreen.style.display === 'none') return;
+
+    password = generatePassword();
+    console.log('Password:', password);
+    
+    arrowsLeft = MAX_ARROWS;
+    targetsHit = 0;
+    passwordGameActive = true;
+    
+    revealedChars = new Array(PASSWORD_LENGTH).fill('');
+    targets = [];
+
+    const gameArea = document.getElementById('game-area');
+    const bow = document.getElementById('bow');
+    
+    if (!gameArea || !bow) return;
+    const oldTargets = gameArea.querySelectorAll('.target');
+    oldTargets.forEach(t => t.remove());
+    const arrowsDisplay = document.getElementById('arrows-left');
+    if (arrowsDisplay) arrowsDisplay.textContent = arrowsLeft;
+    
+    const positions = [
+        { top: 50, left: 10 },
+        { top: 50, left: 28 },
+        { top: 50, left: 46 },
+        { top: 50, left: 64 },
+        { top: 50, left: 82 },
+        { top: 150, left: 20 },
+        { top: 150, left: 72 }
+    ];
+
+    positions.forEach((pos, index) => {
+        const target = document.createElement('div');
+        target.className = 'target';
+        target.style.top = pos.top + 'px';
+        target.style.left = pos.left + '%';
+        target.style.transform = 'translateX(-50%)';
+        target.dataset.index = index;
+        target.textContent = '?';
+        gameArea.appendChild(target);
+        targets.push(target);
+    });
+
+    const submitBtn = document.createElement('button');
+        submitBtn.textContent = 'Submit Password';
+        submitBtn.onclick = checkPasswordSubmit;
+        inputsContainer.appendChild(submitBtn);
+        
+        const restartBtn = document.createElement('button');
+        restartBtn.textContent = 'Restart';
+        restartBtn.onclick = () => {
+            nextScreen('password');
+            setTimeout(initPasswordGame, 100);
+        };
+        inputsContainer.appendChild(restartBtn);
+    }
+
+    moveBowPassword();
+
 }
