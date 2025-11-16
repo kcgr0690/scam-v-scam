@@ -13,6 +13,7 @@
     text-align: center;
     font-size: 50px;
     transform: translate(235px, 200px);
+    font-family: monospace;
 }
 
 #play {
