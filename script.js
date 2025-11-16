@@ -2,6 +2,7 @@ const screen1 = document.getElementById('screen1');
 const screen2 = document.getElementById('screen2');
 const startScreen = document.getElementById('start-screen'); // Added for completeness
 const rhythmGameScreen = document.getElementById('rhythm-game'); // Added for reference if needed
+let gameActive = false;
 
 // comment out music if not using audio; otherwise, uncomment HTML <audio> and add src="your_music.mp3"
 const music = document.getElementById('music');
@@ -129,6 +130,7 @@ function animate() {
 animate();
 
 document.addEventListener('keydown', e => {
+    e.preventDefault();
     const key = e.key;
     if (keyToLane.hasOwnProperty(key)) {
         const lane = keyToLane[key];
