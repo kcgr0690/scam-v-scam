@@ -2,7 +2,6 @@ const screen1 = document.getElementById('screen1');
 const screen2 = document.getElementById('screen2');
 const startScreen = document.getElementById('start-screen'); // Added for completeness
 const rhythmGameScreen = document.getElementById('rhythm-game'); // Added for reference if needed
-let gameActive = false;
 
 // comment out music if not using audio; otherwise, uncomment HTML <audio> and add src="your_music.mp3"
 const music = document.getElementById('music');
@@ -10,6 +9,18 @@ const music = document.getElementById('music');
 const game = document.getElementById('game');
 const scoreEl = document.getElementById('score');
 const messageEl = document.getElementById('message');
+
+const popUp1 = document.getElementById("container1");
+const popUp2 = document.getElementById("container2");
+const popUp3 = document.getElementById("popUp3");
+const popUp4 = document.getElementById("popUp4");
+const popUp5 = document.getElementById("popUp5");
+
+const close1 = document.getElementById("close1");
+const close2 = document.getElementById("close2");
+const close3 = document.getElementById("close3");
+const close4 = document.getElementById("close4");
+const close5 = document.getElementById("close5");
 
 let notes = [];
 let hits = 0;
@@ -42,6 +53,40 @@ function nextScreen(nextId) {
         startGame();
     }
 }
+
+setTimeout(() => {
+    popUp1.style.display = "none";
+
+}, 3000);
+
+setTimeout(() => {
+    popUp2.style.display = "none";
+
+}, 6000);
+
+
+
+function showPopUp2(popUpElement) {
+    const popUp2 = document.getElementById('popUp1');
+    popUp1Element.style.display = 'flex';
+}
+
+setTimeout(showPopUp2, 3000);
+
+function closePopUp(popUpElement) {
+    popUpElement.style.display = 'none';
+}
+
+close1.addEventListener('click', () => {
+    closePopUp(popUp1);
+});
+
+close2.addEventListener('click', () => {
+    closePopUp(popUp2);
+});
+
+
+
 
 function createNote() {
     const lane = Math.floor(Math.random() * 4);
@@ -130,7 +175,6 @@ function animate() {
 animate();
 
 document.addEventListener('keydown', e => {
-    e.preventDefault();
     const key = e.key;
     if (keyToLane.hasOwnProperty(key)) {
         const lane = keyToLane[key];
