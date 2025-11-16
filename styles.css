@@ -70,7 +70,7 @@
     height: 100vh;
 }
 
-#popUp1, #popUp2, #popUp3, #popUp4, #popUp5, #popUp6, #popUp7 {
+#popUp1, #popUp2, #popUp3, #popUp4, #popUp5, #popUp6, #popUp7, #popUp8 {
     display: none;
     position: fixed;
     top: 50%;
@@ -117,6 +117,11 @@
 
 }
 
+#popUp8 {
+    top: 71%;
+    left: 82%;
+
+}
 
 .offer-text{
     padding: 20px 40px 40px 40px;

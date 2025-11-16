@@ -100,6 +100,9 @@ setTimeout(() => {
 
 }, 10000);
 
+displayNext(() => {
+    hide.style.display = "flex";
+}, )
 
 function createNote() {
     const lane = Math.floor(Math.random() * 4);
