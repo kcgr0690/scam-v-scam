@@ -10,7 +10,7 @@
 <body>
     <div id="start-screen" class="screen">
         <div class = "title-text">
-            <h1 id = "title">Scam VS. Scam</h1>
+            <h1 id = "title">Scam vs. Scam</h1>
             <button id = "play" onclick="nextScreen('screen1')">Play</button>
         </div>
     </div>
@@ -24,7 +24,7 @@
         </div>
         <div id="dialogue-box">
             <p id="dialogue-text">Your friend sent you an email!</p>
-            <button onclick="nextScreen('screen2')">Open link!</button>
+            <button class="button" onclick="nextScreen('screen2')">Open link!</button>
 
         </div>
     </div>
@@ -85,7 +85,7 @@
             </div>
         </div>
 
-        <button onclick="nextScreen('rhythm-game')">Next</button> 
+        <button class="button" onclick="nextScreen('rhythm-game')">Next</button> 
         <!--
         DO WE ADD THIS^^^ OR SHOULD WE DO ONCE THEY DISMISS THE LAST POPUP?-->
         </div>
@@ -97,7 +97,7 @@
         <div id="score">Hits: 0, Misses: 0</div>
         <div id="message"></div>
         <!--<audio id="music"></audio> SHOULD WE DO THIS?!??!--> 
-        <button onclick="nextScreen('choice')">Next</button> 
+        <button class="button" onclick="nextScreen('choice')">Next</button> 
     </div>
     
     <div id="choice" class="screen" style="display:none;">
@@ -107,7 +107,7 @@
         <div id="score">Hits: 0, Misses: 0</div>
         <div id="message"></div>
         <!--<audio id="music"></audio> SHOULD WE DO THIS?!??!--> 
-        <button onclick="nextScreen('choice')">Next</button> 
+        <button class="button" onclick="nextScreen('choice')">Next</button> 
     </div>
     <script src="script.js"></script>
 </body>
