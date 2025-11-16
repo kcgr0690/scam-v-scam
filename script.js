@@ -10,17 +10,23 @@ const game = document.getElementById('game');
 const scoreEl = document.getElementById('score');
 const messageEl = document.getElementById('message');
 
-const popUp1 = document.getElementById("popUp1");
-const popUp2 = document.getElementById("popUp2");
-const popUp3 = document.getElementById("popUp3");
-const popUp4 = document.getElementById("popUp4");
-const popUp5 = document.getElementById("popUp5");
+let closedCount = 0;
+const totalPopups = 7;
 
-const close1 = document.getElementById("close1");
-const close2 = document.getElementById("close2");
-const close3 = document.getElementById("close3");
-const close4 = document.getElementById("close4");
-const close5 = document.getElementById("close5");
+
+for (let i = 1; i <= totalPopups; i++) {
+    const btn = document.getElementById(`close${i}`);
+    const popup = document.getElementById(`popUp${i}`);
+
+    btn.addEventListener("click", () => {
+        popup.style.display = "none";  
+        closedCount++;
+
+        if (closedCount === totalPopups) {
+            document.getElementById("nextAfterPopups").style.display = "block";
+        }
+    });
+}
 
 let notes = [];
 let hits = 0;
@@ -213,7 +219,9 @@ function animate() {
 animate();
 
 document.addEventListener('keydown', e => {
-    const key = e.key;
+    if (key.startsWith('Arrow')) {
+        e.preventDefault();
+    }
     if (keyToLane.hasOwnProperty(key)) {
         const lane = keyToLane[key];
         let hitIndex = -1;
