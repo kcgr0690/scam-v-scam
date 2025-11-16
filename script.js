@@ -219,6 +219,7 @@ function animate() {
 animate();
 
 document.addEventListener('keydown', e => {
+    const key = e.key;
     if (key.startsWith('Arrow')) {
         e.preventDefault();
     }
