@@ -36,22 +36,22 @@
 #name {
     font-size: 50px;
     color: blue;
-    transform: translate(560px, 120px);
+    transform: translate(150px, 120px);
 }
 
 #link {
     color: rgb(126, 187, 207);
-    transform: translate(560px, 300px);
+    transform: translate(175px, 300px);
     text-decoration: underline;
 
 }
 
 #email-text {
-    transform: translate(560px, 220px);
+    transform: translate(200px, 220px);
 }
 
 #email-text2 {
-    transform: translate(560px, 300px);
+    transform: translate(200px, 300px);
 }
 
 #screen2 {
@@ -244,7 +244,7 @@
 
 body {
 background: #111;
-color: white;
+color: black;
 font-family: Arial, sans-serif;
 text-align: center;
 margin: 0;

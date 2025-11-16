@@ -1,7 +1,7 @@
 const screen1 = document.getElementById('screen1');
 const screen2 = document.getElementById('screen2');
-const startScreen = document.getElementById('start-screen'); // Added for completeness
-const rhythmGameScreen = document.getElementById('rhythm-game'); // Added for reference if needed
+const startScreen = document.getElementById('start-screen');
+const rhythmGameScreen = document.getElementById('rhythm-game');
 
 // comment out music if not using audio; otherwise, uncomment HTML <audio> and add src="your_music.mp3"
 const music = document.getElementById('music');
@@ -15,106 +15,59 @@ const popUp2 = document.getElementById("popUp2");
 const popUp3 = document.getElementById("popUp3");
 const popUp4 = document.getElementById("popUp4");
 const popUp5 = document.getElementById("popUp5");
+const popUp6 = document.getElementById("popUp6");
+const popUp7 = document.getElementById("popUp7");
 
 const close1 = document.getElementById("close1");
 const close2 = document.getElementById("close2");
 const close3 = document.getElementById("close3");
 const close4 = document.getElementById("close4");
 const close5 = document.getElementById("close5");
+const close6 = document.getElementById("close6");
+const close7 = document.getElementById("close7");
 
+const hide = document.getElementById("hide");
+
+// Close button functionality
+close1.addEventListener('click', () => { popUp1.style.display = "none"; });
+close2.addEventListener('click', () => { popUp2.style.display = "none"; });
+close3.addEventListener('click', () => { popUp3.style.display = "none"; });
+close4.addEventListener('click', () => { popUp4.style.display = "none"; });
+close5.addEventListener('click', () => { popUp5.style.display = "none"; });
+close6.addEventListener('click', () => { popUp6.style.display = "none"; });
+close7.addEventListener('click', () => { popUp7.style.display = "none"; });
 
 setTimeout(() => {
     popUp1.style.display = "flex";
-
 }, 6000);
 
 setTimeout(() => {
     popUp2.style.display = "flex";
-
 }, 6500);
 
 setTimeout(() => {
     popUp3.style.display = "flex";
-
 }, 7000);
 
 setTimeout(() => {
     popUp4.style.display = "flex";
-
 }, 7500);
 
 setTimeout(() => {
     popUp5.style.display = "flex";
-
 }, 8000);
 
 setTimeout(() => {
     popUp6.style.display = "flex";
-
 }, 8500);
 
 setTimeout(() => {
     popUp7.style.display = "flex";
-
 }, 9000);
 
 setTimeout(() => {
     hide.style.display = "flex";
 }, 14000);
-
-let closedCount = 0;
-let score = 10;
-let highScore = 0;
-const totalPopups = 8;
-const hide = document.getElementById('hide');
-
-let secretNumber = Math.trunc(Math.random() * 9) + 1;
-const displayMessage = function(message){
-    document.querySelector(".message").textContent = message;
-}
-
-document.querySelector('.check').addEventListener('click'), function () {
-        const guess = Number(document.querySelector('.guess').value);
-        console.log(guess, typeof guess);
-        if(!guess){
-            displayMessage("No Number")
-        } else if (guess === secretNumber){
-            displayMessage('Correct Number!');
-            document.querySelector('.num').textContent = 
-            secretNumber;
-            document.querySelector('body').style.backgroundColor = "#64b347"
-            document.querySelector('.number').style.width = "30rem";
-
-            if(score > highScore){
-                highScore = score;
-                document.querySelector('.highscore'.textContent = highScore);
-                highScore;
-            }
-            
-            else {
-                if (score > 1){
-                    displayMessage(guess > secretNumber ? "Too High!" : "Too Low!");
-                        score--;
-                        document.querySelector('.score'.textContent = score);
-                    } else {
-                        displayMessage('You Lost the Game!');
-                        document.querySelector('.score').textContent = 0;
-                    }
-                 }
-           }
-        };
-
-        document.querySelector('.again').addEventListener('click',
-        function(){
-            score = 10;
-            secretNumber = Math.trunc(Math.random() * 9) + 1
-            displayMessage('Start Guessing...')
-            document.querySelector('.score').textContent = score;
-            document.querySelector('.number'.textContent = '?');
-                document.querySelector('.guess').value = '';
-        }
-         )
-         
 
 let notes = [];
 let hits = 0;
@@ -142,7 +95,6 @@ function nextScreen(nextId) {
         nextScreenEl.style.display = 'block';
     }
 
-    
     if (nextId === 'rhythm-game') {
         startGame();
     }
@@ -265,4 +217,60 @@ document.addEventListener('keydown', e => {
     }
 });
 
+// Guessing Game Variables
+let closedCount = 0;
+let score = 10;
+let highScore = 0;
 
+let secretNumber = Math.trunc(Math.random() * 9) + 1;
+
+const displayMessage = function(message) {
+    document.querySelector(".message").textContent = message;
+}
+
+// Check button
+const checkBtn = document.querySelector('.check');
+if (checkBtn) {
+    checkBtn.addEventListener('click', function() {
+        const guess = Number(document.querySelector('.guess').value);
+        console.log(guess, typeof guess);
+        
+        if (!guess) {
+            displayMessage("No Number");
+        } else if (guess === secretNumber) {
+            displayMessage('Correct Number!');
+            document.querySelector('.num').textContent = secretNumber;
+            document.querySelector('body').style.backgroundColor = "#64b347";
+            document.querySelector('.num').style.width = "30rem";
+
+            if (score > highScore) {
+                highScore = score;
+                document.querySelector('.highscore').textContent = highScore;
+            }
+        } else {
+            if (score > 1) {
+                displayMessage(guess > secretNumber ? "Too High!" : "Too Low!");
+                score--;
+                document.querySelector('.score').textContent = score;
+            } else {
+                displayMessage('You Lost the Game!');
+                document.querySelector('.score').textContent = 0;
+            }
+        }
+    });
+}
+
+// Again button
+const againBtn = document.querySelector('.again');
+if (againBtn) {
+    againBtn.addEventListener('click', function() {
+        score = 10;
+        secretNumber = Math.trunc(Math.random() * 9) + 1;
+        displayMessage('Start Guessing...');
+        document.querySelector('.score').textContent = score;
+        document.querySelector('.num').textContent = '?';
+        document.querySelector('.guess').value = '';
+        document.querySelector('body').style.backgroundColor = '#111';
+        document.querySelector('.num').style.width = "15rem";
+    });
+}
