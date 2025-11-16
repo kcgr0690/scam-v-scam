@@ -224,16 +224,18 @@ document.addEventListener('keydown', e => {
 
 let closedCount = 0;
 let secretDigits = [];
-let currentIndex = 0;
 
 function generateSecretDigits() {
   let secretDigits = [];  
-  for
+  for (let i = 0; i < phoneLength; i++){
+    let digit = Math.floor(Math.random() * 10);
+    phoneDigits.push(digit);
+    }
+let currentIndex = 0;
 }
+generateSecretDigits();
 
 let secretNumber = Math.trunc(Math.random() * 9) + 1;
-
-
 
 let phoneNumber = phoneDigits.join('');
 console.log("Generated phone:", phoneNumber);
@@ -248,27 +250,19 @@ if (checkBtn) {
         const guess = Number(document.querySelector('.guess').value);
         console.log(guess, typeof guess);
         
-        if (!guess) {
-            displayMessage("No Number");
-        } else if (guess === secretNumber) {
-            displayMessage('Correct Number!');
-            document.querySelector('.num').textContent = secretNumber;
-            document.querySelector('body').style.backgroundColor = "#64b347";
-            document.querySelector('.num').style.width = "30rem";
+        if (guess < 0 || guess > 9 || isNaN(guess)) {
+            displayMessage("Enter 0-9!");
+            return;
+        } 
+        
+        const CorrectDigit = secretDigits[currentIndex];
 
-            if (score > highScore) {
-                highScore = score;
-                document.querySelector('.highscore').textContent = highScore;
-            }
-        } else {
-            if (score > 1) {
-                displayMessage(guess > secretNumber ? "Too High!" : "Too Low!");
-                score--;
-                document.querySelector('.score').textContent = score;
-            } else {
-                displayMessage('You Lost the Game!');
-                document.querySelector('.score').textContent = 0;
-            }
+        
+        if (guess === correctDigit) {
+            displayMessage('Correct Number!');
+            currentIndex++;
+            
+            document.querySelector('.num').textContent = secretDigits.slice(0, currentIndex).join('');
         }
     });
 }
@@ -358,3 +352,23 @@ arrow.remove();
 }, 16);
 });
 
+const PASSWORD_LENGTH = 7;
+const MAX_ARROWS = 10;
+const CHARS = '0123456789!@#$%&*';
+
+let password = '';
+let arrowsLeft = MAX_ARROWS;
+let targetsHit = 0;
+let bowPosition = 50;
+let bowDirection = 1;
+let passwordGameActive = false;
+let revealedChars = new Array(PASSWORD_LENGTH).fill('');
+let targets = [];
+
+function generatePassword() {
+    let pwd = '';
+    for (let i = 0; i < PASSWORD_LENGTH; i++) {
+        pwd += CHARS[Math.floor(Math.random() * CHARS.length)];
+    }
+    return pwd;
+}
