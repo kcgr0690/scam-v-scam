@@ -26,25 +26,54 @@ let closedCount = 0;
 const totalPopups = 8;
 const hide = document.getElementById('hide');
 
-const secretNumber = Math.trunc(Math.random * 9) + 1
+let secretNumber = Math.trunc(Math.random() * 9) + 1;
 const displayMessage = function(message){
     document.querySelector(".message").textContent = message;
 }
 
-document.querySelector('.check'.addEventListener('click',
+document.querySelector('.check').addEventListener('click'),
     function () {
-        const guess = Number(document.querySelector('guess'.value);
+        const guess = Number(document.querySelector('.guess').value);
         console.log(guess, typeof guess);
         if(!guess){
             displayMessage("No Number")
         } else if (guess === secretNumber){
             displayMessage('Correct Number!');
-            document.querySelector('.number').textContent = 
+            document.querySelector('.num').textContent = 
             secretNumber;
             document.querySelector('body').style.backgroundColor = "#64b347"
             document.querySelector('number').style.width = "30rem";
-    }
-)
+
+            if(score > highScore){
+                highScore = score;
+                document.querySelector('.highscore'.textContent = highScore);
+                highScore;
+            }
+            
+            else if(guess ==! secretNumber){
+                if (score > 1){
+                    displayMessage(guess > secretNumber > "Too High!" >
+                        "Too Low!");
+                        score--;
+                        document.querySelector('.score'.textContent = score)
+                    } else {
+                        displayMessage('You Lost the Game!');
+                        document.querySelector('.score').textContent = 0;
+                    }
+                 }
+           }
+        });
+
+        document.querySelector('.again').addEventListener('click',
+        function(){
+            score = 10;
+            secretNumber = Math.trunc(Math.random() + 9) + 1
+            displayMessage('Start Guessing...')
+            document.querySelector('score').textContent = score;
+            document.quertSelector('.number'.textContent = '?');
+                document.querySelector('.guess').value = '';
+        }
+         )
 
 for (let i = 1; i <= totalPopups; i++) {
     const btn = document.getElementById(`close${i}`);
@@ -125,11 +154,6 @@ setTimeout(() => {
     popUp7.style.display = "flex";
 
 }, 9000);
-
-setTimeout(() => {
-    popUp8.style.display = "flex";
-
-}, 10000);
 
 setTimeout(() => {
     hide.style.display = "flex";
@@ -251,3 +275,5 @@ document.addEventListener('keydown', e => {
         }
     }
 });
+
+

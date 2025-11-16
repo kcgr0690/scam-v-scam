@@ -181,7 +181,7 @@
     border-top: 2px solid #fff;
 }
 
-#game {
+#game, #number {
     position: relative;
     width: 400px;
     height:600px;
@@ -240,4 +240,27 @@
     padding: 8px;
     border-radius: 4px;
 
+}
+
+body {
+background: #111;
+color: white;
+font-family: Arial, sans-serif;
+text-align: center;
+margin: 0;
+}
+
+#game-area {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #ff2b4e;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold;
+    color: transparent; /* hidden at first */
+    border: 3px solid white;
 }

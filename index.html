@@ -84,12 +84,6 @@
                 <img src = "images/7.png" width="100%">
             </div>
         </div>
-        <div class = "container8">
-            <div id = "popUp8">
-                <button id ="close8">x</button>
-                <img src = "images/8.jpg" width="100%">
-            </div>
-        </div>
 
         <button id = "hide" onclick="nextScreen('rhythm-game')">Next</button> 
         <!--
@@ -115,18 +109,13 @@
         <button onclick="nextScreen('number')">Let's find their phone number!</button> 
         <button onclick="nextScreen('email')">Let's find their email!</button> 
     </div>
-    <div id="choice" class="screen" style="display:none;">
-        <div class = "container8">
-            
-        
-    </div>
-
+    
     <div id="number" class="screen" style="display:none;">
         <h1 id = "num-title">Guess My Number !</h1>
         <p class ="between">(Between 0-9)</p>
         <button class="again btn">Again!!!</button>
         <div class="num">
-            
+           ? 
         </div>
         <main>
         <section class="left">
@@ -134,9 +123,22 @@
             <button class="ntm check">Check!</button>
                 </section>
                 <section class="right"></section>
-                <p class="message">Start Guessing.</p>
+                <p class="message">Start Guessing...</p>
+                <p class="label-score">Score: <span class="score">10</span></p> 
+                <p class="label-highscore">Highscore: <span class="highscore">0</span>s</p>
             </main>
     </div>
-    <script src="script.js"></script>
+
+    <div id="password" class="screen" style="display:none;">
+<title>Target Password Game</title>
+<p>Shoot the 7 targets to reveal the password. You have <span id="arrows-left">10</span> arrows.</p>
+
+
+<div id="game-area">
+<div id="bow"></div>
+</div>
+
+<div id="inputs"></div>
+<script src="script.js"></script>
 </body>
 </html>
