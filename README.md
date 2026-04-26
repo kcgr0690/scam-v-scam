@@ -3,7 +3,7 @@
 **DISCLAIMER: THIS GAME IS ENTIRELY SATIRE. DO NOT GO AROUND TRYING TO SCAM PEOPLE IN REAL LIFE OR YOU WILL FACE CONSEQUENCES AND WE WILL BE VERY UPSET AND CRY!!!!!!!!**
 
 ... Scammer vs Scammer...
-By Marwa (yes... that Marwa.. heh) and Kasey (Queso)
+By Marwa (yes... that Marwa.. heh) and Kc (Queso)
 ...
 SORRY FOR NOT DOING THE README... queso is _employed_ and marwa has 5 billion assignments due... but HERE WE GO!!!
 
